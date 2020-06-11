@@ -6,23 +6,21 @@ var _puppeteer2 = _interopRequireDefault(_puppeteer);
 
 var _mochaSteps = require("mocha-steps");
 
+var _builder = require("../builder");
+
+var _builder2 = _interopRequireDefault(_builder);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 describe("Test", function () {
-  var browser = void 0;
   var page = void 0;
 
   before(async function () {
-    browser = await _puppeteer2.default.launch({
-      headless: true
-    });
-
-    page = await browser.newPage();
-    await page.setDefaultTimeout(7000);
+    page = await _builder2.default.build("Tablet");
   });
 
   after(async function () {
-    await browser.close();
+    await page.close();
   });
 
   (0, _mochaSteps.step)("should load google homepage", async function () {

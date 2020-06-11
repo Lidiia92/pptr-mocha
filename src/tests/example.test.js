@@ -1,21 +1,19 @@
 import puppeteer from "puppeteer";
 import { step } from "mocha-steps";
+import Page from "../builder";
 
 describe("Test", () => {
-  let browser;
   let page;
+  let mobile;
 
   before(async () => {
-    browser = await puppeteer.launch({
-      headless: true,
-    });
-
-    page = await browser.newPage();
-    await page.setDefaultTimeout(7000);
+    page = await Page.build("Tablet");
+    mobile = await Page.build("Mobile");
   });
 
   after(async () => {
-    await browser.close();
+    await page.close();
+    await mobile.close();
   });
 
   step("should load google homepage", async () => {
