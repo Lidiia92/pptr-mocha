@@ -14,20 +14,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 describe("Test", function () {
   var page = void 0;
+  //let mobile;
 
   before(async function () {
-    page = await _builder2.default.build("Tablet");
+    page = await _builder2.default.build("Desktop");
+    //mobile = await Page.build("Mobile");
   });
 
   after(async function () {
     await page.close();
+    //await mobile.close();
   });
 
-  (0, _mochaSteps.step)("should load google homepage", async function () {
-    await page.goto("https://google.com");
-  });
-
-  (0, _mochaSteps.step)("step 2", async function () {
-    console.log("test");
+  (0, _mochaSteps.step)("should load zero webappsecurity site", async function () {
+    await page.goto("http://zero.webappsecurity.com/index.html");
+    await page.waitAndClick("#onlineBankingMenu");
   });
 });

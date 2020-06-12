@@ -4,23 +4,20 @@ import Page from "../builder";
 
 describe("Test", () => {
   let page;
-  let mobile;
+  //let mobile;
 
   before(async () => {
-    page = await Page.build("Tablet");
-    mobile = await Page.build("Mobile");
+    page = await Page.build("Desktop");
+    //mobile = await Page.build("Mobile");
   });
 
   after(async () => {
     await page.close();
-    await mobile.close();
+    //await mobile.close();
   });
 
-  step("should load google homepage", async () => {
-    await page.goto("https://google.com");
-  });
-
-  step("step 2", async () => {
-    console.log("test");
+  step("should load zero webappsecurity site", async () => {
+    await page.goto("http://zero.webappsecurity.com/index.html");
+    await page.waitAndClick("#onlineBankingMenu");
   });
 });
